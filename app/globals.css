@@ -8,8 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +18,471 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.55s ease-out forwards;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2.25s ease-in-out infinite;
+}
+
+/* Staggered entrance for result sections - starts invisible, animates in */
+@keyframes eco-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.65rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eco-animate-in {
+  opacity: 0;
+  animation: eco-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.eco-delay-1 {
+  animation-delay: 0.09s;
+}
+
+.eco-delay-2 {
+  animation-delay: 0.18s;
+}
+
+.eco-delay-3 {
+  animation-delay: 0.27s;
+}
+
+.eco-delay-4 {
+  animation-delay: 0.36s;
+}
+
+.eco-delay-5 {
+  animation-delay: 0.45s;
+}
+
+/* Cross-fade between main interaction states */
+.eco-state-panel {
+  transition: opacity 0.35s ease-out;
+}
+
+/* Gentle motion - hero & accents */
+@keyframes eco-title-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-eco-title-float {
+  animation: eco-title-float 5s ease-in-out infinite;
+}
+
+@keyframes eco-lid-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.eco-recycle-lid {
+  transform-origin: center bottom;
+  animation: eco-lid-wiggle 2.8s ease-in-out infinite;
+}
+
+/* User preview “flies” into recycle bin (loop, synced with inner reveal) */
+@keyframes eco-recycle-fly-in {
+  0% {
+    transform: translate(-50%, -58px) scale(0.82);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  38% {
+    transform: translate(-50%, 20px) scale(0.58);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, 36px) scale(0.4);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 36px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.eco-recycle-fly-img {
+  animation: eco-recycle-fly-in 3.8s ease-in-out infinite;
+}
+
+@keyframes eco-recycle-inner-reveal {
+  0%,
+  34% {
+    opacity: 0.08;
+    transform: scale(1.12);
+  }
+  46%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.eco-recycle-inner-img {
+  animation: eco-recycle-inner-reveal 3.8s ease-in-out infinite;
+}
+
+/* Upload zone soft glow pulse */
+@keyframes eco-upload-glow {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px -4px rgb(16 185 129 / 0.12);
+  }
+  50% {
+    box-shadow: 0 8px 28px -2px rgb(16 185 129 / 0.22);
+  }
+}
+
+.animate-eco-upload-glow {
+  animation: eco-upload-glow 3.5s ease-in-out infinite;
+}
+
+/* Gentle bin float (multi-bin mode) */
+@keyframes eco-bin-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.eco-bin-float-delay-0 {
+  animation: eco-bin-float 3.2s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.eco-bin-float-delay-1 {
+  animation: eco-bin-float 3.2s ease-in-out infinite;
+  animation-delay: 0.35s;
+}
+
+.eco-bin-float-delay-2 {
+  animation: eco-bin-float 3.2s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+
+/* Thumbnail: drop into bin, pause, rise out, repeat */
+@keyframes eco-thumb-drop {
+  0%,
+  100% {
+    transform: translate(-50%, -44px) scale(0.78);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  28% {
+    transform: translate(-50%, 18px) scale(0.95);
+    opacity: 1;
+  }
+  48% {
+    transform: translate(-50%, 18px) scale(0.95);
+    opacity: 1;
+  }
+  65% {
+    transform: translate(-50%, 18px) scale(0.95);
+    opacity: 1;
+  }
+  82% {
+    transform: translate(-50%, -28px) scale(0.82);
+    opacity: 0.9;
+  }
+  94% {
+    transform: translate(-50%, -44px) scale(0.78);
+    opacity: 0;
+  }
+}
+
+.eco-thumb-drop {
+  animation: eco-thumb-drop 3.4s ease-in-out infinite;
+}
+
+.eco-thumb-img {
+  /* Ensures the *whole* thumbnail stays visible (no cropping). */
+  object-fit: contain;
+}
+
+/* While classification is in flight - thumbnail hovers above bins */
+@keyframes eco-sort-pending-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.eco-sort-pending-thumb {
+  animation: eco-sort-pending-float 2.1s ease-in-out infinite;
+}
+
+/* How it works cards - lift on hover */
+.eco-card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.eco-card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -8px rgb(16 185 129 / 0.18);
+}
+
+/* Micro UX: button / chip press feedback */
+.eco-micro-press {
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    filter 0.2s ease;
+}
+
+.eco-micro-press:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Focus ring (keyboard) */
+.eco-focus-soft:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px white,
+    0 0 0 4px rgb(16 185 129 / 0.45);
+}
+
+/* How it works - staggered step entrance */
+@keyframes eco-hiw-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eco-hiw-step {
+  opacity: 0;
+  animation: eco-hiw-fade 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.eco-hiw-step-0 {
+  animation-delay: 0.06s;
+}
+
+.eco-hiw-step-1 {
+  animation-delay: 0.14s;
+}
+
+.eco-hiw-step-2 {
+  animation-delay: 0.22s;
+}
+
+.eco-step-icon {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.eco-hiw-step:hover .eco-step-icon {
+  transform: scale(1.07) rotate(-2deg);
+  box-shadow: 0 6px 16px -6px rgb(16 185 129 / 0.35);
+}
+
+/* Upcycling cards - stagger */
+.eco-upcycle-list > li {
+  opacity: 0;
+  animation: eco-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.eco-upcycle-list > li:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.eco-upcycle-list > li:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.eco-upcycle-list > li:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+/* Recyclability badge entrance */
+@keyframes eco-badge-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.eco-badge-pop {
+  animation: eco-badge-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Upload zone - tiny press on tap (empty state) */
+.eco-upload-nudge:active {
+  transform: scale(0.996);
+}
+
+/* Navbar brand subtle hover */
+.eco-nav-brand {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .eco-nav-brand:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Loading preview soft zoom-in */
+@keyframes eco-soft-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.eco-loading-preview {
+  animation: eco-soft-zoom 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-eco-title-float,
+  .eco-recycle-lid,
+  .eco-recycle-fly-img,
+  .eco-recycle-inner-img,
+  .animate-eco-upload-glow,
+  .eco-bin-float-delay-0,
+  .eco-bin-float-delay-1,
+  .eco-bin-float-delay-2,
+  .eco-sort-pending-thumb {
+    animation: none !important;
+  }
+
+  .eco-thumb-drop {
+    animation: none !important;
+    transform: translate(-50%, 18px) scale(0.95) !important;
+    opacity: 1 !important;
+  }
+
+  .eco-recycle-fly-img {
+    opacity: 0 !important;
+  }
+
+  .eco-recycle-inner-img {
+    opacity: 0.95 !important;
+    transform: none !important;
+  }
+
+  .eco-card-lift:hover {
+    transform: none;
+  }
+
+  .eco-micro-press:active {
+    transform: none;
+  }
+
+  .eco-hiw-step {
+    opacity: 1;
+    animation: none;
+  }
+
+  .eco-hiw-step:hover .eco-step-icon {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .eco-upcycle-list > li {
+    opacity: 1;
+    animation: none;
+  }
+
+  .eco-badge-pop {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .eco-nav-brand:hover {
+    transform: none;
+  }
+
+  .eco-loading-preview {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .eco-upload-nudge:active {
+    transform: none;
+  }
+
+  .group:hover .eco-upload-emoji {
+    transform: none;
+  }
+}
+

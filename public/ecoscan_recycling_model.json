@@ -1,0 +1,548 @@
+{
+  "model_info": {
+    "name": "Random Forest",
+    "r2_score": 0.9559,
+    "mae": 0.033,
+    "training_samples": 1920,
+    "test_samples": 480,
+    "features": [
+      "Material",
+      "Item Category",
+      "Weight (g)",
+      "Contaminated",
+      "Mixed Material",
+      "Recycling Symbol",
+      "Condition",
+      "Size"
+    ],
+    "data_sources": [
+      "CPCB Annual Report on Solid Waste Management",
+      "Swachh Bharat Mission Municipal Data",
+      "BMC Waste Audit Reports",
+      "EPA Global Recycling Rate Benchmarks"
+    ]
+  },
+  "label_encoders": {
+    "material_type": {
+      "Aluminum": 0,
+      "Cardboard": 1,
+      "Ceramic": 2,
+      "E_Waste": 3,
+      "Fabric": 4,
+      "Glass": 5,
+      "HDPE": 6,
+      "LDPE": 7,
+      "Mixed_Plastic": 8,
+      "Multi_Layer": 9,
+      "Organic": 10,
+      "PET": 11,
+      "PP": 12,
+      "PS": 13,
+      "PVC": 14,
+      "Paper": 15,
+      "Rubber": 16,
+      "Steel": 17,
+      "Tetra_Pak": 18,
+      "Wood": 19
+    },
+    "item_category": {
+      "aerosol_can": 0,
+      "apple_core": 1,
+      "banana_peel": 2,
+      "battery": 3,
+      "bedsheet": 4,
+      "beer_can": 5,
+      "biscuit_wrapper": 6,
+      "blister_pack": 7,
+      "bottle_cap": 8,
+      "box": 9,
+      "bread_bag": 10,
+      "broken_mug": 11,
+      "broken_plate": 12,
+      "bucket": 13,
+      "candy_wrapper": 14,
+      "cereal_box": 15,
+      "charger": 16,
+      "chip_packet": 17,
+      "chopsticks": 18,
+      "circuit_board": 19,
+      "cling_wrap": 20,
+      "coconut_water_carton": 21,
+      "coffee_sachet": 22,
+      "container": 23,
+      "detergent_bottle": 24,
+      "earphones": 25,
+      "egg_carton": 26,
+      "egg_carton_foam": 27,
+      "eggshell": 28,
+      "envelope": 29,
+      "flower_pot": 30,
+      "flower_waste": 31,
+      "foil": 32,
+      "food_can": 33,
+      "food_container": 34,
+      "glass_bottle": 35,
+      "glass_jar": 36,
+      "glove": 37,
+      "hanger": 38,
+      "instant_noodle_pack": 39,
+      "jeans": 40,
+      "juice_bottle": 41,
+      "juice_carton": 42,
+      "leftover_food": 43,
+      "magazine": 44,
+      "meat_bones": 45,
+      "medicine_bottle": 46,
+      "medicine_bottle_glass": 47,
+      "metal_lid": 48,
+      "microwave_container": 49,
+      "milk_carton": 50,
+      "milk_jug": 51,
+      "newspaper": 52,
+      "notebook": 53,
+      "office_paper": 54,
+      "oil_bottle": 55,
+      "packing_peanuts": 56,
+      "paint_can": 57,
+      "pen": 58,
+      "pencil": 59,
+      "phone": 60,
+      "pickle_jar": 61,
+      "pie_tin": 62,
+      "pipe": 63,
+      "pizza_box": 64,
+      "plastic_bag": 65,
+      "popsicle_stick": 66,
+      "rubber_band": 67,
+      "shampoo_bottle": 68,
+      "shipping_box": 69,
+      "shoe_sole": 70,
+      "shrink_wrap": 71,
+      "sock": 72,
+      "soda_bottle": 73,
+      "soda_can": 74,
+      "soup_carton": 75,
+      "squeeze_bottle": 76,
+      "steel_container": 77,
+      "straw": 78,
+      "styrofoam_cup": 79,
+      "styrofoam_plate": 80,
+      "tea_leaves": 81,
+      "tile_piece": 82,
+      "tin_can": 83,
+      "tire_piece": 84,
+      "toothbrush": 85,
+      "towel": 86,
+      "toy": 87,
+      "tshirt": 88,
+      "unknown_plastic": 89,
+      "vegetable_scraps": 90,
+      "vinyl_sheet": 91,
+      "water_bottle": 92,
+      "wine_bottle": 93,
+      "wooden_crate": 94,
+      "yogurt_cup": 95
+    },
+    "size_category": {
+      "large": 0,
+      "medium": 1,
+      "small": 2
+    }
+  },
+  "feature_importance": {
+    "Material": 0.6643,
+    "Item Category": 0.0069,
+    "Weight (g)": 0.0192,
+    "Contaminated": 0.1332,
+    "Mixed Material": 0.136,
+    "Recycling Symbol": 0.0023,
+    "Condition": 0.0364,
+    "Size": 0.0017
+  },
+  "predictions": {
+    "Aluminum": {
+      "clean_single": 88.0,
+      "clean_mixed": 29.4,
+      "dirty_single": 34.1,
+      "dirty_mixed": 11.3,
+      "average": 75.1
+    },
+    "Cardboard": {
+      "clean_single": 84.5,
+      "clean_mixed": 25.5,
+      "dirty_single": 39.2,
+      "dirty_mixed": 11.0,
+      "average": 71.4
+    },
+    "Ceramic": {
+      "clean_single": 3.0,
+      "clean_mixed": 1.8,
+      "dirty_single": 2.4,
+      "dirty_mixed": 1.4,
+      "average": 2.5
+    },
+    "E_Waste": {
+      "clean_single": 22.1,
+      "clean_mixed": 9.3,
+      "dirty_single": 6.6,
+      "dirty_mixed": 3.9,
+      "average": 17.5
+    },
+    "Fabric": {
+      "clean_single": 18.1,
+      "clean_mixed": 5.5,
+      "dirty_single": 8.9,
+      "dirty_mixed": 2.4,
+      "average": 16.1
+    },
+    "Glass": {
+      "clean_single": 59.7,
+      "clean_mixed": 25.9,
+      "dirty_single": 25.0,
+      "dirty_mixed": 14.8,
+      "average": 50.2
+    },
+    "HDPE": {
+      "clean_single": 28.9,
+      "clean_mixed": 12.6,
+      "dirty_single": 13.7,
+      "dirty_mixed": 7.5,
+      "average": 25.0
+    },
+    "LDPE": {
+      "clean_single": 9.8,
+      "clean_mixed": 2.8,
+      "dirty_single": 4.2,
+      "dirty_mixed": 3.0,
+      "average": 10.4
+    },
+    "Mixed_Plastic": {
+      "clean_single": 7.6,
+      "clean_mixed": 2.8,
+      "dirty_single": 2.4,
+      "dirty_mixed": 1.4,
+      "average": 5.9
+    },
+    "Multi_Layer": {
+      "clean_single": 2.1,
+      "clean_mixed": 0.5,
+      "dirty_single": 2.7,
+      "dirty_mixed": 1.3,
+      "average": 3.1
+    },
+    "Organic": {
+      "clean_single": 2.4,
+      "clean_mixed": 1.5,
+      "dirty_single": 1.9,
+      "dirty_mixed": 1.8,
+      "average": 3.0
+    },
+    "PET": {
+      "clean_single": 38.0,
+      "clean_mixed": 14.3,
+      "dirty_single": 15.0,
+      "dirty_mixed": 4.9,
+      "average": 29.3
+    },
+    "PP": {
+      "clean_single": 22.3,
+      "clean_mixed": 10.4,
+      "dirty_single": 7.8,
+      "dirty_mixed": 4.4,
+      "average": 19.9
+    },
+    "PS": {
+      "clean_single": 1.8,
+      "clean_mixed": 0.9,
+      "dirty_single": 0.6,
+      "dirty_mixed": 1.1,
+      "average": 0.7
+    },
+    "PVC": {
+      "clean_single": 5.8,
+      "clean_mixed": 3.7,
+      "dirty_single": 2.6,
+      "dirty_mixed": 2.2,
+      "average": 5.3
+    },
+    "Paper": {
+      "clean_single": 64.9,
+      "clean_mixed": 23.2,
+      "dirty_single": 26.8,
+      "dirty_mixed": 9.0,
+      "average": 54.4
+    },
+    "Rubber": {
+      "clean_single": 7.7,
+      "clean_mixed": 4.4,
+      "dirty_single": 4.5,
+      "dirty_mixed": 3.5,
+      "average": 6.3
+    },
+    "Steel": {
+      "clean_single": 80.1,
+      "clean_mixed": 28.0,
+      "dirty_single": 35.6,
+      "dirty_mixed": 16.2,
+      "average": 74.2
+    },
+    "Tetra_Pak": {
+      "clean_single": 3.3,
+      "clean_mixed": 2.7,
+      "dirty_single": 2.9,
+      "dirty_mixed": 2.6,
+      "average": 3.6
+    },
+    "Wood": {
+      "clean_single": 9.9,
+      "clean_mixed": 3.1,
+      "dirty_single": 2.7,
+      "dirty_mixed": 1.6,
+      "average": 8.9
+    }
+  },
+  "material_insights": {
+    "PET": {
+      "reasons": [
+        "PET collection rate in Mumbai is approximately 29% due to informal sector (kabadiwalas)",
+        "Sorting facilities reject about 14% of collected PET due to contamination",
+        "Mumbai has 3 operational PET recycling plants with limited daily capacity"
+      ],
+      "tips": [
+        "Rinse the bottle before discarding \u2014 reduces rejection at sorting facilities",
+        "Remove cap and label \u2014 they are different plastic types and contaminate PET batches",
+        "Flatten the bottle to save space \u2014 more can be collected per trip"
+      ]
+    },
+    "HDPE": {
+      "reasons": [
+        "HDPE has lower market value than PET, so informal collectors skip it more often",
+        "Only 22% of HDPE waste in Mumbai enters the recycling stream",
+        "HDPE containers with food residue are almost always rejected"
+      ],
+      "tips": [
+        "Clean the container thoroughly before recycling",
+        "Check for recycling symbol #2 \u2014 confirms it is HDPE",
+        "Sell to kabadiwala rather than putting in mixed recycling bin"
+      ]
+    },
+    "PVC": {
+      "reasons": [
+        "PVC releases toxic chlorine when processed, most facilities refuse it",
+        "Only 5% of PVC in Mumbai is recycled, mostly by specialized facilities",
+        "PVC contaminates entire batches of other plastics if mixed in"
+      ],
+      "tips": [
+        "Avoid buying PVC products when alternatives exist",
+        "Contact BMC hazardous waste collection for large PVC items",
+        "Never burn PVC \u2014 it releases highly toxic dioxins"
+      ]
+    },
+    "LDPE": {
+      "reasons": [
+        "Plastic bags and films are too lightweight for economic collection",
+        "LDPE jams sorting machinery at recycling facilities",
+        "Only 8% of LDPE in Mumbai avoids landfill"
+      ],
+      "tips": [
+        "Reuse plastic bags multiple times before discarding",
+        "Switch to cloth bags \u2014 Mumbai has a plastic bag ban for bags under 50 microns",
+        "Collect clean LDPE bags and sell in bulk to kabadiwalas"
+      ]
+    },
+    "PP": {
+      "reasons": [
+        "PP has moderate recyclability but is often contaminated with food",
+        "About 18% of PP waste in Mumbai gets recycled",
+        "PP is commonly used in food containers making contamination rates high"
+      ],
+      "tips": [
+        "Wash food containers thoroughly before recycling",
+        "PP containers marked #5 have best recycling chances",
+        "Reuse PP containers for storage instead of discarding"
+      ]
+    },
+    "PS": {
+      "reasons": [
+        "Styrofoam is almost never recycled \u2014 less than 1% globally",
+        "It breaks into microplastics during processing and contaminates other materials",
+        "No recycling facility in Mumbai accepts polystyrene"
+      ],
+      "tips": [
+        "Avoid buying products with styrofoam packaging",
+        "Use alternatives like paper plates and cups",
+        "Styrofoam can only go to landfill \u2014 there is no recycling option in Mumbai"
+      ]
+    },
+    "Mixed_Plastic": {
+      "reasons": [
+        "Mixed or unidentified plastics cannot be sorted into recyclable streams",
+        "Only 6% of mixed plastic in Mumbai avoids landfill",
+        "Recyclers need pure material streams \u2014 mixed plastics have no market"
+      ],
+      "tips": [
+        "Check the recycling number on the bottom to identify the plastic type",
+        "If no number exists, assume it is not recyclable",
+        "Reduce consumption of unidentified plastic products"
+      ]
+    },
+    "Glass": {
+      "reasons": [
+        "Glass has a relatively strong recycling infrastructure in Mumbai at 42%",
+        "Kabadiwalas actively buy glass bottles \u2014 the economics work",
+        "Broken glass is harder to recycle and often rejected"
+      ],
+      "tips": [
+        "Keep glass bottles intact \u2014 broken glass has much lower recycling value",
+        "Rinse out food residue before recycling",
+        "Sell to kabadiwala \u2014 glass bottles have resale value in Mumbai"
+      ]
+    },
+    "Aluminum": {
+      "reasons": [
+        "Aluminum has the highest recycling rate in Mumbai at 68%",
+        "High scrap value means ragpickers and kabadiwalas actively collect it",
+        "Aluminum can be recycled infinitely without quality loss"
+      ],
+      "tips": [
+        "Crush cans to save collection space",
+        "Rinse briefly \u2014 residue is less of an issue for aluminum",
+        "Sell to kabadiwala for best results \u2014 aluminum has good scrap value"
+      ]
+    },
+    "Steel": {
+      "reasons": [
+        "Steel recycling rate in Mumbai is approximately 55%",
+        "Magnetic separation makes steel easy to sort at facilities",
+        "Food cans need labels removed and rinsing for best results"
+      ],
+      "tips": [
+        "Remove paper labels before recycling",
+        "Rinse out food residue",
+        "Kabadiwalas pay for steel/tin \u2014 sell directly for guaranteed recycling"
+      ]
+    },
+    "Paper": {
+      "reasons": [
+        "Paper recycling rate in Mumbai is about 45% thanks to kabadiwala network",
+        "Wet or food-stained paper cannot be recycled and contaminates batches",
+        "Newspapers and office paper have highest recycling value"
+      ],
+      "tips": [
+        "Keep paper dry \u2014 wet paper cannot be recycled",
+        "Separate newspaper from mixed waste \u2014 it has the highest paper recycling value",
+        "Sell old newspapers and magazines to kabadiwala"
+      ]
+    },
+    "Cardboard": {
+      "reasons": [
+        "Cardboard has a 52% recycling rate in Mumbai \u2014 one of the better materials",
+        "Amazon and Flipkart boxes are highly sought by kabadiwalas",
+        "Food-stained cardboard like pizza boxes often gets rejected"
+      ],
+      "tips": [
+        "Flatten boxes to save space and make collection easier",
+        "Remove tape and labels if possible",
+        "Keep dry \u2014 wet cardboard loses all recycling value"
+      ]
+    },
+    "Tetra_Pak": {
+      "reasons": [
+        "Tetra Pak is multi-layered (paper + plastic + aluminum) making separation expensive",
+        "Only 3% of Tetra Pak in Mumbai gets recycled",
+        "Only one facility in Maharashtra processes Tetra Pak"
+      ],
+      "tips": [
+        "Rinse the carton and flatten it",
+        "Look for Tetra Pak collection drives in your area",
+        "Consider switching to glass-bottled alternatives when available"
+      ]
+    },
+    "Multi_Layer": {
+      "reasons": [
+        "Multi-layer packaging like chip packets combine plastic, aluminum, and paper",
+        "Separation is not economically viable \u2014 only 2% gets recycled globally",
+        "No facility in Mumbai can process multi-layer packaging at scale"
+      ],
+      "tips": [
+        "This item cannot be recycled in Mumbai currently",
+        "Reduce consumption of products with multi-layer packaging",
+        "Some organizations collect chip packets for upcycling into bags \u2014 search locally"
+      ]
+    },
+    "Fabric": {
+      "reasons": [
+        "Textile recycling in Mumbai is only about 12%",
+        "Most discarded clothing ends up in landfill",
+        "Blended fabrics (cotton+polyester) are harder to recycle than pure materials"
+      ],
+      "tips": [
+        "Donate wearable clothing instead of discarding",
+        "Use old clothes as cleaning rags",
+        "Drop at textile recycling bins \u2014 some Mumbai malls have them"
+      ]
+    },
+    "Wood": {
+      "reasons": [
+        "Wood waste recycling in Mumbai is only 8%",
+        "Treated or painted wood cannot be recycled",
+        "Small wood items like chopsticks have no collection infrastructure"
+      ],
+      "tips": [
+        "Untreated wood can be composted",
+        "Repurpose wooden items before discarding",
+        "Painted or treated wood should go to regular waste, not recycling"
+      ]
+    },
+    "Ceramic": {
+      "reasons": [
+        "Ceramic cannot be recycled \u2014 it does not melt or reform like glass",
+        "Broken ceramics contaminate glass recycling batches",
+        "Only 1% of ceramic waste is diverted from landfill"
+      ],
+      "tips": [
+        "Broken ceramics can only go to landfill waste",
+        "Repurpose broken pots as garden drainage material",
+        "Consider buying durable ceramics to reduce waste"
+      ]
+    },
+    "Rubber": {
+      "reasons": [
+        "Rubber recycling rate in Mumbai is about 5%",
+        "Vulcanized rubber cannot be easily reprocessed",
+        "Tire recycling exists but small rubber items have no collection system"
+      ],
+      "tips": [
+        "Old tires can be given to tire retreading shops",
+        "Small rubber items go to regular waste",
+        "Rubber takes 50-80 years to decompose in landfill"
+      ]
+    },
+    "E_Waste": {
+      "reasons": [
+        "E-waste recycling in Mumbai is about 15% through formal channels",
+        "Informal e-waste recycling exists but often involves hazardous practices",
+        "E-waste contains toxic metals like lead and mercury requiring special handling"
+      ],
+      "tips": [
+        "Drop at authorized e-waste collection centers \u2014 BMC has designated points",
+        "Many electronics brands have take-back programs",
+        "Never throw e-waste in regular bins \u2014 toxic metals contaminate soil and water"
+      ]
+    },
+    "Organic": {
+      "reasons": [
+        "Organic waste is not recycled but can be composted",
+        "Mumbai processes about 65% of segregated organic waste through composting",
+        "Mixed organic waste with non-organic items reduces composting success"
+      ],
+      "tips": [
+        "Segregate organic waste in the green bin",
+        "Home composting is easy for kitchen scraps",
+        "Keep organic waste separate from all other waste types"
+      ],
+      "is_compostable": true,
+      "composting_rate": 65
+    }
+  }
+}
