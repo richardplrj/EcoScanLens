@@ -8,14 +8,14 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "EcoScan - Smart Waste Classification",
+  title: "EcoScan Lens - Smart Waste Classification",
   description:
     "Upload a photo of any item and get instant waste classification, recyclability guidance, decomposition insights, and reuse ideas powered by AI vision.",
   keywords: [
     "waste classification",
     "recycling",
     "sustainability",
-    "EcoScan",
+    "EcoScan Lens",
     "AI",
   ],
 };

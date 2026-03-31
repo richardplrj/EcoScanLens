@@ -8,7 +8,7 @@ export default function Navbar() {
           <span className="select-none" aria-hidden="true">
             🌿♻️
           </span>
-          <span>EcoScan</span>
+          <span>EcoScan Lens</span>
         </div>
       </div>
     </header>
