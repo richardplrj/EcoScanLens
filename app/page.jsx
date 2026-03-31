@@ -22,6 +22,7 @@ import {
   TIMEOUT_ERROR_MESSAGE,
 } from "@/lib/friendlyErrors";
 import { compressImageForApi } from "@/lib/compressImageForApi";
+import { getRealityCheckFromGptResult } from "@/lib/realityCheck";
 
 const FETCH_TIMEOUT_MS = 90_000;
 
@@ -153,11 +154,33 @@ export default function Home() {
     !loading && !error && result && result.is_waste !== false;
 
   const dustbinTarget = useMemo(() => {
-    if (!result || result.is_waste === false) return "recycle";
+    if (!result || result.is_waste === false) return null;
+
+    if (String(result.material_key ?? "") === "E_Waste") return "e_waste";
+
+    // Use the same mapping engine as Reality Check as a strong fallback.
+    const mapped = getRealityCheckFromGptResult(result);
+    if (mapped?.material === "E_Waste") return "e_waste";
+
+    const eWasteBlob = [
+      result.item_name,
+      result.material_type,
+      result.recyclability_reason,
+      result.disposal_guidance,
+    ]
+      .map((v) => String(v ?? "").toLowerCase())
+      .join(" ");
+
+    const isEWaste =
+      /\b(e-?waste|electronic|electronics|battery|cell\b|phone|iphone|mobile|smartphone|laptop|charger|adapter|circuit|pcb|earphone|headphone|tablet|power bank|keyboard|mouse)\b/.test(
+        eWasteBlob
+      );
+    if (isEWaste) return "e_waste";
+
     const classification = String(result.classification ?? "").toLowerCase();
     if (classification === "dry") return "dry";
     if (classification === "wet") return "wet";
-    return "recycle";
+    return "unknown";
   }, [result]);
 
   return (
@@ -174,7 +197,7 @@ export default function Home() {
                 <div className="mx-auto w-full max-w-3xl px-4 pb-2 sm:px-6">
                   <DustbinSortAnimation
                     imageUrl={imagePreview || null}
-                    target="recycle"
+                    target={null}
                     classificationPending
                     compact
                   />
@@ -198,7 +221,7 @@ export default function Home() {
                 />
                 <DustbinSortAnimation
                   imageUrl={imagePreview || null}
-                  target="recycle"
+                  target={null}
                   compact
                 />
               </div>

@@ -8,6 +8,10 @@ function binLabel(type) {
       return "Dry waste";
     case "wet":
       return "Wet waste";
+    case "e_waste":
+      return "E-Waste";
+    case "unknown":
+      return "Recycle";
     default:
       return "Recycle";
   }
@@ -20,6 +24,10 @@ function binBodyPrint(type) {
       return "Dry waste";
     case "wet":
       return "Wet waste";
+    case "e_waste":
+      return "E-Waste";
+    case "unknown":
+      return "Recycle";
     default:
       return "Recycle";
   }
@@ -37,7 +45,9 @@ function RealisticBinSvg({ type }) {
       ? { a: "#4ade80", b: "#166534" }
       : type === "wet"
         ? { a: "#7dd3fc", b: "#0369a1" }
-        : { a: "#facc15", b: "#a16207" };
+        : type === "e_waste"
+          ? { a: "#c4b5fd", b: "#6d28d9" }
+          : { a: "#d1d5db", b: "#4b5563" };
 
   return (
     <svg
@@ -117,9 +127,22 @@ function RealisticBinSvg({ type }) {
       />
       <circle cx="34" cy="138" r="2.2" fill="#52525b" />
       <circle cx="66" cy="138" r="2.2" fill="#52525b" />
-      {type === "recycle" ? (
+      {type === "e_waste" ? (
         <g transform="translate(50, 84)" opacity="0.45">
-          <circle r="13" fill="none" stroke="#86efac" strokeWidth="1.1" />
+          <circle r="13" fill="none" stroke="#ddd6fe" strokeWidth="1.1" />
+          <path
+            d="M-2,-8 L1,-8 L0,0 L4,0 L-1,8 L0,2 L-4,2 Z"
+            fill="none"
+            stroke="#ede9fe"
+            strokeWidth="1.05"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      ) : null}
+      {type === "unknown" ? (
+        <g transform="translate(50, 84)" opacity="0.45">
+          <circle r="13" fill="none" stroke="#dcfce7" strokeWidth="1.1" />
           <path
             d="M-1,-7 L6,3 L-1,3 M1,7 L-6,-1 L1,-1"
             fill="none"
@@ -192,7 +215,7 @@ function Bin({ type, index, imageUrl, target, animNonce }) {
 
 export default function DustbinSortAnimation({
   imageUrl,
-  target = "recycle",
+  target = null,
   compact = false,
   classificationPending = false,
 }) {
@@ -210,7 +233,7 @@ export default function DustbinSortAnimation({
     <div className={`mx-auto ${compact ? "mt-0" : "mt-4 sm:mt-2"} px-2`}>
       {!compact ? (
         <p className="mb-3 text-center text-xs font-medium uppercase tracking-wider text-emerald-800/70">
-          Sort it right - dry, wet, or recycle
+          Sort it right - dry, wet, e-waste, or recycle
         </p>
       ) : null}
 
@@ -246,8 +269,15 @@ export default function DustbinSortAnimation({
           animNonce={animNonce}
         />
         <Bin
-          type="recycle"
+          type="e_waste"
           index={2}
+          imageUrl={imageUrl}
+          target={effectiveTarget}
+          animNonce={animNonce}
+        />
+        <Bin
+          type="unknown"
+          index={3}
           imageUrl={imageUrl}
           target={effectiveTarget}
           animNonce={animNonce}

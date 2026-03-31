@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { ECOSCAN_CLASSIFY_SYSTEM_PROMPT } from "@/lib/prompts";
+import { resolveMaterialKeyFromResult } from "@/lib/realityCheck";
 
 const OPENAI_CHAT_URL = "https://api.openai.com/v1/chat/completions";
 
@@ -70,7 +71,7 @@ export async function POST(request) {
 
   const payload = {
     model: MODEL,
-    temperature: 0.3,
+    temperature: 0,
     max_tokens: 1800,
     messages: [
       { role: "system", content: ECOSCAN_CLASSIFY_SYSTEM_PROMPT },
@@ -164,6 +165,13 @@ export async function POST(request) {
       },
       { status: 500 }
     );
+  }
+
+  // Normalize to a deterministic model key for downstream mapping/routing.
+  if (parsed?.is_waste === true) {
+    parsed.material_key = resolveMaterialKeyFromResult(parsed);
+  } else {
+    parsed.material_key = "";
   }
 
   return NextResponse.json(parsed);
