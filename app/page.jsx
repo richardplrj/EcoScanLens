@@ -35,11 +35,22 @@ export default function Home() {
 
   const requestIdRef = useRef(0);
   const abortRef = useRef(null);
+  const statePanelRef = useRef(null);
 
   const scrollToTopSmooth = useCallback(() => {
     if (typeof window === "undefined") return;
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }, []);
+
+  const scrollToStatePanelSmooth = useCallback(() => {
+    if (typeof window === "undefined") return;
+    window.requestAnimationFrame(() => {
+      statePanelRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   }, []);
 
@@ -97,6 +108,7 @@ export default function Home() {
     setResult(null);
     setError(null);
     setLoading(true);
+    scrollToStatePanelSmooth();
 
     try {
       const imageForApi = await compressImageForApi(dataUrl);
@@ -144,7 +156,7 @@ export default function Home() {
         abortRef.current = null;
       }
     }
-  }, []);
+  }, [scrollToStatePanelSmooth]);
 
   const showUpload = !loading && !result && !error;
   const showError = !loading && Boolean(error);
@@ -190,7 +202,7 @@ export default function Home() {
         <Hero />
 
         <div className="flex flex-1 flex-col">
-          <div className="eco-state-panel flex flex-1 flex-col">
+          <div ref={statePanelRef} className="eco-state-panel flex flex-1 flex-col">
             {loading ? (
               <>
                 <LoadingState imagePreview={imagePreview} />
