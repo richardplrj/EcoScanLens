@@ -10,10 +10,8 @@ function binLabel(type) {
       return "Wet waste";
     case "e_waste":
       return "E-Waste";
-    case "unknown":
-      return "Recycle";
     default:
-      return "Recycle";
+      return "E-Waste";
   }
 }
 
@@ -26,10 +24,8 @@ function binBodyPrint(type) {
       return "Wet waste";
     case "e_waste":
       return "E-Waste";
-    case "unknown":
-      return "Recycle";
     default:
-      return "Recycle";
+      return "E-Waste";
   }
 }
 
@@ -47,7 +43,7 @@ function RealisticBinSvg({ type }) {
         ? { a: "#7dd3fc", b: "#0369a1" }
         : type === "e_waste"
           ? { a: "#c4b5fd", b: "#6d28d9" }
-          : { a: "#d1d5db", b: "#4b5563" };
+          : { a: "#c4b5fd", b: "#6d28d9" };
 
   return (
     <svg
@@ -140,19 +136,6 @@ function RealisticBinSvg({ type }) {
           />
         </g>
       ) : null}
-      {type === "unknown" ? (
-        <g transform="translate(50, 84)" opacity="0.45">
-          <circle r="13" fill="none" stroke="#dcfce7" strokeWidth="1.1" />
-          <path
-            d="M-1,-7 L6,3 L-1,3 M1,7 L-6,-1 L1,-1"
-            fill="none"
-            stroke="#bbf7d0"
-            strokeWidth="1.05"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-      ) : null}
     </svg>
   );
 }
@@ -233,7 +216,7 @@ export default function DustbinSortAnimation({
     <div className={`mx-auto ${compact ? "mt-0" : "mt-4 sm:mt-2"} px-2`}>
       {!compact ? (
         <p className="mb-3 text-center text-xs font-medium uppercase tracking-wider text-emerald-800/70">
-          Sort it right - dry, wet, e-waste, or recycle
+          Sort it right - dry, wet, or e-waste
         </p>
       ) : null}
 
@@ -271,13 +254,6 @@ export default function DustbinSortAnimation({
         <Bin
           type="e_waste"
           index={2}
-          imageUrl={imageUrl}
-          target={effectiveTarget}
-          animNonce={animNonce}
-        />
-        <Bin
-          type="unknown"
-          index={3}
           imageUrl={imageUrl}
           target={effectiveTarget}
           animNonce={animNonce}

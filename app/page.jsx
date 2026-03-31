@@ -180,7 +180,7 @@ export default function Home() {
     const classification = String(result.classification ?? "").toLowerCase();
     if (classification === "dry") return "dry";
     if (classification === "wet") return "wet";
-    return "unknown";
+    return null;
   }, [result]);
 
   return (
